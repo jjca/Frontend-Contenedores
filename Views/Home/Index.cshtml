@@ -1,0 +1,38 @@
+﻿@model List<Frontend_Contenedores.Models.Contenedor>
+@{
+    ViewData["Title"] = "Contenedores";
+    var totalPages = ViewBag.TotalPages as int? ?? 1;
+    var currentPage = ViewBag.CurrentPage as int? ?? 1;
+}
+
+<h2>Contenedores</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Estatus</th>
+            <th>Naviera</th>
+            <th>Código</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Estatus</td>
+                <td>@item.Naviera</td>
+                <td>@item.Codigo</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            <li class="page-item @(i == currentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+        }
+    </ul>
+</nav>
