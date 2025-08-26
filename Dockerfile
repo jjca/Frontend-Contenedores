@@ -31,9 +31,6 @@ COPY --link --from=building-stage /publish .
 # Puerto
 EXPOSE 8080
 
-# Interfaz
-ENV ASPNETCORE_ENVIRONMENT=Development
-
 HEALTHCHECK --interval=5s --timeout=10s --start-period=10s CMD curl -f http://localhost:8080/ || exit 1
 
 # Arranque
