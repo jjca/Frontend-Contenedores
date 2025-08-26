@@ -16,7 +16,7 @@ namespace Frontend_Contenedores.Services
 
         public async Task<List<Contenedor>> GetContenedoresAsync()
         {
-            var url = "https://localhost:7128/Contenedor";
+            var url = "http://backend:5198/Contenedor";
             var contenedores = await _httpClient.GetFromJsonAsync<List<Contenedor>>(url);
             return contenedores ?? new List<Contenedor>();
         }
