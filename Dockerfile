@@ -1,6 +1,6 @@
 
 # Imagen base para compilar
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS building-stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS building-stage
 
 # Directorio de trabajo 
 WORKDIR /src
@@ -19,9 +19,9 @@ COPY . .
 RUN dotnet publish --no-restore -o /publish
 
 # Imagen de ejecución
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/*
+RUN apk add curl
 
 WORKDIR /app
 
